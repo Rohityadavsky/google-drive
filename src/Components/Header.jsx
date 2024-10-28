@@ -1,11 +1,18 @@
 
-import {signInWithPopup} from 'firebase/auth';
+import {signInWithPopup,signInWithCredential} from 'firebase/auth';
 import { auth, googleAuthProvider } from '../Config/firebase';
 
 const Header = () =>{
-    const Login = () =>{
-        // alert('Login');
-        signInWithPopup(auth,googleAuthProvider);
+    const Login = async() =>{
+        try{
+            const data = await signInWithPopup(auth,googleAuthProvider);
+            console.log(data.user);
+        }
+        catch(error){
+            console.error(error);
+            alert(error.message);
+        }
+        
     }
     return (
         <>
